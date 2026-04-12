@@ -1,6 +1,6 @@
 import { Link } from 'wouter';
 import { GlassCard } from '@/components/GlassCard';
-import { Music, Settings2, Piano, BookOpen, Hand } from 'lucide-react';
+import { Music, Piano, BookOpen, Hand } from 'lucide-react';
 
 export default function Home() {
   return (

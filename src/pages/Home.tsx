@@ -1,6 +1,6 @@
 import { Link } from 'wouter';
 import { GlassCard } from '@/components/GlassCard';
-import { Music, Settings2, Piano } from 'lucide-react';
+import { Music, Settings2, Piano, BookOpen, Hand } from 'lucide-react';
 
 export default function Home() {
   return (
@@ -35,18 +35,29 @@ export default function Home() {
             </GlassCard>
           </Link>
 
-          <GlassCard className="h-full p-6 opacity-60 pointer-events-none">
-            <div className="h-12 w-12 rounded-xl bg-muted flex items-center justify-center mb-6">
-              <Settings2 className="text-muted-foreground" size={24} />
-            </div>
-            <h2 className="text-2xl font-semibold mb-2">Interval Training</h2>
-            <p className="text-muted-foreground text-sm">
-              Coming soon. Practice identifying intervals by ear and sight.
-            </p>
-            <div className="absolute top-4 right-4 bg-muted text-xs px-2 py-1 rounded text-muted-foreground font-medium">
-              WIP
-            </div>
-          </GlassCard>
+          <Link href="/reference/chords">
+            <GlassCard className="h-full p-6 cursor-pointer group hover:-translate-y-1 hover:shadow-md transition-all duration-300">
+              <div className="h-12 w-12 rounded-xl bg-primary/10 text-primary flex items-center justify-center mb-6 group-hover:scale-105 transition-transform duration-300 border border-primary/20">
+                <BookOpen size={24} />
+              </div>
+              <h2 className="text-2xl font-semibold mb-2">Chord Dictionary</h2>
+              <p className="text-muted-foreground text-sm">
+                Visual reference for major and minor triads mapped onto the piano keys.
+              </p>
+            </GlassCard>
+          </Link>
+
+          <Link href="/reference/fingering">
+            <GlassCard className="h-full p-6 cursor-pointer group hover:-translate-y-1 hover:shadow-md transition-all duration-300">
+              <div className="h-12 w-12 rounded-xl bg-primary/10 text-primary flex items-center justify-center mb-6 group-hover:scale-105 transition-transform duration-300 border border-primary/20">
+                <Hand size={24} />
+              </div>
+              <h2 className="text-2xl font-semibold mb-2">Finger Position Guide</h2>
+              <p className="text-muted-foreground text-sm">
+                Learn standard 5-finger piano hand placements labeled strictly 1 through 5.
+              </p>
+            </GlassCard>
+          </Link>
         </div>
       </main>
     </div>

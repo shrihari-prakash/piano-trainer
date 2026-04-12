@@ -1,6 +1,8 @@
 import { Route, Switch } from "wouter";
 import Home from "@/pages/Home";
 import KeyRecognition from "@/pages/KeyRecognition";
+import ChordReference from "@/pages/ChordReference";
+import FingerGuide from "@/pages/FingerGuide";
 
 function App() {
   return (
@@ -8,6 +10,8 @@ function App() {
       <Switch>
         <Route path="/" component={Home} />
         <Route path="/practice/key-recognition" component={KeyRecognition} />
+        <Route path="/reference/chords" component={ChordReference} />
+        <Route path="/reference/fingering" component={FingerGuide} />
         
         {/* Fallback route */}
         <Route>

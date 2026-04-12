@@ -25,7 +25,7 @@ export default function Home() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           <Link href="/practice/key-recognition">
             <GlassCard className="h-full p-6 cursor-pointer group hover:-translate-y-1 hover:shadow-md transition-all duration-300">
-              <div className="h-12 w-12 rounded-xl bg-primary/10 text-primary flex items-center justify-center mb-6 group-hover:scale-105 transition-transform duration-300">
+              <div className="h-12 w-12 rounded-xl bg-primary/10 text-primary flex items-center justify-center mb-6 group-hover:scale-105 transition-transform duration-300 border border-primary/20">
                 <Music size={24} />
               </div>
               <h2 className="text-2xl font-semibold mb-2">Key Recognition</h2>

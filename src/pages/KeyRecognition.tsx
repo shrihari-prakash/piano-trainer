@@ -103,7 +103,7 @@ export default function KeyRecognition() {
 
                 <div className="mb-8 p-4 rounded-xl border border-border">
                   <label className="flex items-center justify-between text-sm font-medium mb-2">
-                    <span className="flex items-center gap-2 text-muted-foreground"><Clock size={16} /> Interval Limit</span>
+                    <span className="flex items-center gap-2 text-foreground"><Clock size={16} className="text-muted-foreground" /> Interval Limit</span>
                     <span className="font-mono bg-muted px-2 py-0.5 rounded border border-border">{intervalLimit}s</span>
                   </label>
                   <input

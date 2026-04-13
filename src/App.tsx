@@ -5,33 +5,28 @@ import KeyRecognition from "@/pages/KeyRecognition";
 import ChordReference from "@/pages/ChordReference";
 import FingerGuide from "@/pages/FingerGuide";
 
+import NoSleep from 'nosleep.js';
+
 function useWakeLock() {
   useEffect(() => {
-    let wakeLock: any = null;
+    const noSleep = new NoSleep();
 
-    const requestWakeLock = async () => {
-      try {
-        if ('wakeLock' in navigator) {
-          wakeLock = await (navigator as any).wakeLock.request('screen');
-        }
-      } catch (err: any) {
-        console.error(`Wake Lock Error: ${err.name}, ${err.message}`);
+    const enableNoSleep = () => {
+      if (!noSleep.isEnabled) {
+        // Enable wake lock.
+        // It's critical this fires inside a direct user interaction.
+        noSleep.enable();
       }
     };
 
-    const handleVisibilityChange = () => {
-      if (document.visibilityState === 'visible') {
-        requestWakeLock();
-      }
-    };
-
-    requestWakeLock();
-    document.addEventListener('visibilitychange', handleVisibilityChange);
+    document.addEventListener('click', enableNoSleep, false);
+    document.addEventListener('touchstart', enableNoSleep, { passive: true });
 
     return () => {
-      document.removeEventListener('visibilitychange', handleVisibilityChange);
-      if (wakeLock) {
-        wakeLock.release().catch(console.error);
+      document.removeEventListener('click', enableNoSleep, false);
+      document.removeEventListener('touchstart', enableNoSleep, false);
+      if (noSleep.isEnabled) {
+        noSleep.disable();
       }
     };
   }, []);

@@ -35,6 +35,18 @@ export default function Home() {
             </GlassCard>
           </Link>
 
+          <Link href="/practice/chord-recognition">
+            <GlassCard className="h-full p-6 cursor-pointer group hover:-translate-y-1 hover:shadow-md transition-all duration-300">
+              <div className="h-12 w-12 rounded-xl bg-primary/10 text-primary flex items-center justify-center mb-6 group-hover:scale-105 transition-transform duration-300 border border-primary/20">
+                <Piano size={24} />
+              </div>
+              <h2 className="text-2xl font-semibold mb-2">Chord Recognition</h2>
+              <p className="text-muted-foreground text-sm">
+                Identify and play the prompted major or minor triad before the timer runs out.
+              </p>
+            </GlassCard>
+          </Link>
+
           <Link href="/reference/chords">
             <GlassCard className="h-full p-6 cursor-pointer group hover:-translate-y-1 hover:shadow-md transition-all duration-300">
               <div className="h-12 w-12 rounded-xl bg-primary/10 text-primary flex items-center justify-center mb-6 group-hover:scale-105 transition-transform duration-300 border border-primary/20">

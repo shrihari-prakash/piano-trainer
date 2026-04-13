@@ -11,11 +11,18 @@ export default function KeyRecognition() {
   const [timeLeft, setTimeLeft] = useState(10);
   const [intervalLimit, setIntervalLimit] = useState(10);
 
+  const recentKeysRef = useRef<string[]>([]);
   const timerRef = useRef<number | ReturnType<typeof setInterval> | null>(null);
 
   const pickRandomKey = () => {
-    const available = targetKey ? KEYS.filter(k => k !== targetKey) : KEYS;
-    return available[Math.floor(Math.random() * available.length)];
+    // Filter out the last 3 seen keys to guarantee wide coverage
+    // Since we have 7 keys, this ensures we evaluate from 4 fresh remaining keys.
+    const available = KEYS.filter(k => !recentKeysRef.current.includes(k));
+    const next = available[Math.floor(Math.random() * available.length)];
+    
+    // Push to history buffer and keep max 3
+    recentKeysRef.current = [...recentKeysRef.current, next].slice(-3);
+    return next;
   };
 
   const startGame = () => {

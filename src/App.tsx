@@ -1,10 +1,45 @@
+import { useEffect } from 'react';
 import { Route, Switch } from "wouter";
 import Home from "@/pages/Home";
 import KeyRecognition from "@/pages/KeyRecognition";
 import ChordReference from "@/pages/ChordReference";
 import FingerGuide from "@/pages/FingerGuide";
 
+function useWakeLock() {
+  useEffect(() => {
+    let wakeLock: any = null;
+
+    const requestWakeLock = async () => {
+      try {
+        if ('wakeLock' in navigator) {
+          wakeLock = await (navigator as any).wakeLock.request('screen');
+        }
+      } catch (err: any) {
+        console.error(`Wake Lock Error: ${err.name}, ${err.message}`);
+      }
+    };
+
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === 'visible') {
+        requestWakeLock();
+      }
+    };
+
+    requestWakeLock();
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+
+    return () => {
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+      if (wakeLock) {
+        wakeLock.release().catch(console.error);
+      }
+    };
+  }, []);
+}
+
 function App() {
+  useWakeLock();
+  
   return (
     <>
       <Switch>
